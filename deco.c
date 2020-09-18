@@ -111,10 +111,10 @@ int main(void){
                 state = handleBaseState(c);
                 break;
             case COMMENT_START:
+                possible_error = line;
                 state = handleComment_StartState(c);
                 break;
             case COMMENT:
-                possible_error = line;
                 state = handleCommentState(c);
                 break;
             case COMMENT_END:
