@@ -101,7 +101,7 @@ enum State_Type handleBackSlashState(int c){
 int main(void){
     int c;
     enum State_Type state = BASE;
-    int line = -1;
+    int line = 1;
     int possible_error;
     while((c = getchar()) != EOF){
         if (c == '\n')
