@@ -1,8 +1,13 @@
+/*--------------------------------------------------------------------*/
+/* deco.c                                                             */
+/* Auhtor: Christian Ronda                                            */
+/*--------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 
+/*--------------------------------------------------------------------*/
 
 enum State_Type {BASE, COMMENT_START, COMMENT, QUOTE, COMMENT_END, BACKSLASH};
 
@@ -23,6 +28,8 @@ enum State_Type handleBaseState(int c)
     return state;
 }
 
+/*--------------------------------------------------------------------*/
+
 enum State_Type handleComment_StartState(int c){
     enum State_Type state;
     if(c == '*'){
@@ -41,6 +48,8 @@ enum State_Type handleComment_StartState(int c){
     return state;
 }
 
+/*--------------------------------------------------------------------*/
+
 enum State_Type handleCommentState(int c){
     enum State_Type state;
     if(c == '\n'){
@@ -55,6 +64,8 @@ enum State_Type handleCommentState(int c){
     }
     return state;
 }
+
+/*--------------------------------------------------------------------*/
 
 enum State_Type handleComment_EndState(int c){
     enum State_Type state;
@@ -74,6 +85,8 @@ enum State_Type handleComment_EndState(int c){
     return state;
 }
 
+/*--------------------------------------------------------------------*/
+
 enum State_Type handleQuoteState(int c){
     enum State_Type state;
     if (c == '\'' || c == '\"'){
@@ -91,6 +104,8 @@ enum State_Type handleQuoteState(int c){
     return state;
 }
 
+/*--------------------------------------------------------------------*/
+
 enum State_Type handleBackSlashState(int c){
     enum State_Type state;
     putchar(c);
@@ -98,6 +113,8 @@ enum State_Type handleBackSlashState(int c){
     return state;
 }
 
+/*takes a input file a prints out the contents replacing comments with spaces
+ * and giving an error message if the comment has no end                    */
 int main(void){
     int c;
     enum State_Type state = BASE;

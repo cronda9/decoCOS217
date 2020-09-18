@@ -2,16 +2,16 @@
 dfa
 Author: Christian Ronda
 ========================================================================
-Start (accept): <-- the start state
+Base (accept): <-- the start state
     /: COMMENT_START
     ' or ": QUOTE
     \: BACKSLASH
-    other: start
+    other: BASE
 
 Comment_Start (accept):
     *: COMMENT
-    \n: START
-    other: START
+    \n: BASE
+    other: COMMENT_START
 
 Comment (reject):
     \n: COMMENT
@@ -19,12 +19,13 @@ Comment (reject):
     other: COMMENT
 
 Comment_End (reject):
-    /: START
+    /: BASE
     *: COMMENT_END
-    other: comment
+    \n: COMMENT
+    other: COMMENT
 
 Quote (accept):
-    ' or ": START
+    ' or ": BASE
     \: QUOTE_BACKSLASH
     other: QUOTE
 
