@@ -130,6 +130,8 @@ int main(void){
         }
     }
     printf("%d",COMMENT);
+    printf("\n");
+    printf("%u",state);
     if (state == 2){
         fprintf(stderr, "Error: %d: unterminated comment\n", possible_error);
         exit(EXIT_FAILURE);
