@@ -129,10 +129,7 @@ int main(void){
             default: break;
         }
     }
-    printf("%d",COMMENT);
-    printf("\n");
-    printf("%u",state);
-    if (state == 2){
+    if (state == 4 || state == 2){
         fprintf(stderr, "Error: %d: unterminated comment\n", possible_error);
         exit(EXIT_FAILURE);
     }
