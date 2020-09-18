@@ -1,0 +1,33 @@
+========================================================================
+dfa
+Author: Christian Ronda
+========================================================================
+Start (accept): <-- the start state
+    /: COMMENT_START
+    ' or ": QUOTE
+    \: BACKSLASH
+    other: start
+
+Comment_Start (accept):
+    *: COMMENT
+    \n: START
+    other: START
+
+Comment (reject):
+    \n: COMMENT
+    *: COMMENT_END
+    other: COMMENT
+
+Comment_End (reject):
+    /: START
+    *: COMMENT_END
+    other: comment
+
+Quote (accept):
+    ' or ": START
+    \: QUOTE_BACKSLASH
+    other: QUOTE
+
+BackSlash (accept):
+    other: QUOTE
+
